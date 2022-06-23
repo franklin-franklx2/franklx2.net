@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-const HTMLHead: typeof Head = () => {
+const HTMLHead: any = () => {
   return (
     <Head>
       <title>Create Next App</title>
