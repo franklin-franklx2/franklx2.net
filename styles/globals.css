@@ -10,3 +10,20 @@
   display: flex;
   height: 100%;
 }
+
+/* Menu */
+.mui-item-menu-wrapper {
+  padding: 0px;
+}
+
+.menu-wrapper {
+  margin-top: 0em;
+  padding: 2em 0em;
+  outline: 1px solid black;
+}
+
+.menu-content-wrapper {
+  display: flex;
+  justify-content: center;
+  outline: 1px solid black;
+}
