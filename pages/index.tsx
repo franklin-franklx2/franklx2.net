@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <>
       <HTMLHead />
-      <Header pageTitle={'Home'} />
+      <Header pageTitle={'Frank Lin'} />
       <Menu />
       <Body />
       <Footer />

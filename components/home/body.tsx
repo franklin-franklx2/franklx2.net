@@ -1,6 +1,22 @@
 import { Grid } from '@mui/material';
+import * as contentful from 'contentful';
+
+const INTRO_ENTRY_ID = '4Wx6Wy6m7uxp6NpKIf4LEB';
 
 const Body: any = (props: any) => {
+  const params = {
+    space: `${process.env.CONTENTFUL_SPACE_ID}`,
+    accessToken: `${process.env.CONTENTFUL_ACCESS_TOKEN}`
+  };
+  const client = contentful.createClient(params);
+  console.log('params: ', params);
+  client.getEntry(INTRO_ENTRY_ID).then(function (entry) {
+    // logs the entry metadata
+    console.log(entry.sys);
+
+    // logs the field with ID title
+    console.dir(entry, { depth: null });
+  });
   return (
     <Grid container>
       <Grid item xs={2} p={1} />

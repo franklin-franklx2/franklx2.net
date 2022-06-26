@@ -1,6 +1,5 @@
 /* Header */
 .header-wrapper {
-  outline: 1px solid black;
   height: 10em;
 }
 
@@ -18,6 +17,12 @@
   height: 100%;
 }
 
+.header-content-wrapper h1 {
+  font-family: 'Glegoo', serif;
+  font-size: 3em;
+  color: #5e5642;
+}
+
 /* Menu */
 .mui-item-menu-wrapper {
   padding: 0px;
@@ -26,7 +31,6 @@
 .menu-wrapper {
   margin-top: 0em;
   padding: 2em 0em;
-  outline: 1px solid black;
   height: 10em;
 }
 
@@ -37,14 +41,23 @@
 .menu-content-wrapper {
   display: flex;
   justify-content: center;
-  outline: 1px solid black;
   align-items: center;
   height: 100%;
 }
 
+.menu-content-wrapper a {
+  font-family: 'Glegoo', serif;
+  font-size: 2em;
+  color: #3e3520;
+  text-decoration: none;
+}
+
+.menu-content-wrapper a:hover {
+  color: #807650;
+}
+
 /* Footer */
 .footer-wrapper {
-  outline: 1px solid black;
   height: 10em;
 }
 
@@ -53,16 +66,19 @@
   align-items: center;
   display: flex;
   height: 100%;
+  font-family: 'Antonio', sans-serif;
 }
 
 /* Body */
 body {
   margin: 0px;
   padding: 0px;
+  background-image: url(/images/home-wood-bg.png);
+  background-repeat: repeat;
+  background-size: contain;
 }
 
 .body-content-wrapper {
-  outline: 1px solid black;
   height: 20em;
   margin-bottom: 5em;
   padding: 1em;
@@ -72,7 +88,16 @@ body {
   margin: 0 0 10px 0;
 }
 
-.header-wrapper {
-  background-color: #eeb571;
+.header-wrapper,
+.footer-wrapper,
+.menu-content-wrapper {
+  background-color: #d4ae80;
   background-image: url('/images/wood-pattern.png');
+  filter: drop-shadow(11px 11px 10px rgb(36, 36, 36));
+}
+
+.body-content-wrapper {
+  background-image: url('/images/body-paper-bg.png');
+  background-size: cover;
+  filter: drop-shadow(11px 11px 10px rgb(36, 36, 36));
 }
