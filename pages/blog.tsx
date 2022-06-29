@@ -55,7 +55,7 @@ const Blog: NextPage = () => {
         body: {
           content: content
         },
-        tags: contentItem.metadata.tags
+        tag: contentItem.metadata.tags[0].sys.id
       });
     });
 

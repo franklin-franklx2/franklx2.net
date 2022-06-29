@@ -3,22 +3,7 @@ import { Grid } from '@mui/material';
 // jotai
 import { useAtom } from 'jotai';
 import { Suspense } from 'react';
-import { blogPostsAtom, blogPostsAtom2 } from '../../atoms/store';
-
-const Tags: any = (props: { tags: any }) => {
-  const tags = props.tags;
-  console.log('tags: ', tags);
-  return (
-    <>
-      <Suspense>
-        {tags.map((tag: string) => {
-          <span>{tag}</span>;
-        })}
-      </Suspense>
-      ;
-    </>
-  );
-};
+import { blogPostsAtom } from '../../atoms/store';
 
 const Body: any = () => {
   const [blogPosts] = useAtom(blogPostsAtom);
@@ -30,7 +15,6 @@ const Body: any = () => {
         <div className="body-content-wrapper">
           {blogPosts.map((blogPost) => {
             console.log('blogPost: ', blogPost);
-            console.log('blogPost.tags: ', blogPost.tags);
             return (
               <Grid key={Math.random()} container className="blog-post-wrapper">
                 <Grid item xs={12} className="blog-post-title">
@@ -49,6 +33,7 @@ const Body: any = () => {
                   xs={4}
                   className="blog-post-tags"
                 ></Grid>
+                <Grid key={Math.random()} item xs={2}></Grid>
               </Grid>
             );
           })}

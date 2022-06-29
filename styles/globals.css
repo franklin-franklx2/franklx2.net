@@ -118,3 +118,9 @@ body {
   font-style: italic;
   margin-top: 20px;
 }
+
+.blog-tag-wrapper {
+  font-family: monospace;
+  background-color: yellow;
+  outline: 1px black solid;
+}
