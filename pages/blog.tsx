@@ -42,7 +42,6 @@ const getcontent = (content: any) => {
 
 const Blog: NextPage = () => {
   const [, setJotaiBlogPosts] = useAtom(blogPostsAtom);
-
   const getBlogPosts = (content: any) => {
     const ret: any[] = [];
     content.forEach((contentItem: any) => {
