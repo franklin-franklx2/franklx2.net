@@ -1,11 +1,10 @@
 import { Grid } from '@mui/material';
 // jotai
 import { useAtom } from 'jotai';
-import { homeBodyAtom } from '../../atoms/atoms';
+import { homeBodyAtom } from '../../atoms/store';
 
 const Body: any = () => {
   const [jotaiHomeBody] = useAtom(homeBodyAtom);
-
   return (
     <Grid container>
       <Grid item xs={2} p={1} />

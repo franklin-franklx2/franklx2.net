@@ -8,14 +8,10 @@ export default function Document() {
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
-          crossOrigi="true"
+          crossOrigin="true"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Glegoo&display=swap"
-          rel="stylesheet"
-        ></link>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Glegoo&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Antonio:wght@100&family=Gilda+Display&family=Glegoo&display=swap"
           rel="stylesheet"
         />
       </Head>

@@ -1,29 +1,61 @@
 import { Grid } from '@mui/material';
 
-const Body: any = (props: any) => {
+// jotai
+import { useAtom } from 'jotai';
+import { Suspense } from 'react';
+import { blogPostsAtom } from '../../atoms/store';
+
+const Tags: any = (props: { tags: any }) => {
+  const tags = props.tags;
+  console.log('tags: ', tags);
+  return (
+    <>
+      <Suspense>
+        {tags.map((tag: string) => {
+          <span>{tag}</span>;
+        })}
+      </Suspense>
+      ;
+    </>
+  );
+};
+
+const Body: any = () => {
+  const [blogPosts] = useAtom(blogPostsAtom);
+  console.log('blog, body, blogPosts: ', blogPosts);
   return (
     <Grid container>
       <Grid item xs={2} p={1} />
       <Grid item xs={8} p={1}>
         <div className="body-content-wrapper">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+          {blogPosts.map((blogPost) => {
+            console.log('blogPost: ', blogPost);
+            console.log('blogPost.tags: ', blogPost.tags);
+            return (
+              <Grid key={Math.random()} container className="blog-post-wrapper">
+                <Grid item xs={12} className="blog-post-title">
+                  <h3>{blogPost.title}</h3>
+                </Grid>
+                <Grid item xs={12} className="blog-post-description">
+                  <p>{blogPost.description}</p>
+                </Grid>
+                <Grid item xs={2} className="blog-post-date">
+                  <span>{blogPost.date}</span>
+                </Grid>
+                <Grid item xs={6} />
+                <Grid
+                  key={Math.random()}
+                  item
+                  xs={4}
+                  className="blog-post-tags"
+                >
+                  {/* <Suspense> */}
+                  <Tags tags={blogPost.tags} />
+                  {/* </Suspense> */}
+                </Grid>
+              </Grid>
+            );
+          })}
         </div>
       </Grid>
       <Grid item xs={2} p={1} />

@@ -75,13 +75,14 @@ body {
   padding: 0px;
   background-image: url(/images/home-wood-bg2.png);
   background-repeat: repeat;
-  background-size: contain;
+  background-size: auto;
 }
 
 .body-content-wrapper {
   height: fit-content;
   margin-bottom: 5em;
   padding: 35px;
+  font-family: 'Gilda Display', serif;
 }
 
 .body-content-wrapper p {
@@ -100,4 +101,20 @@ body {
   background-image: url('/images/body-paper-bg.png');
   background-size: cover;
   filter: drop-shadow(11px 11px 10px rgb(36, 36, 36));
+}
+
+/* Blog */
+
+.blog-post-wrapper {
+  outline: dashed 2px;
+  padding: 0px 10px 20px 10px;
+}
+
+.blog-post-wrapper:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.blog-post-date {
+  font-style: italic;
+  margin-top: 20px;
 }

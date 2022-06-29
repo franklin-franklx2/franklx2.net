@@ -10,7 +10,7 @@ import { get } from 'lodash';
 
 // jotai
 import { useAtom } from 'jotai';
-import { homeBodyAtom } from '../atoms/atoms';
+import { homeBodyAtom } from '../atoms/store';
 
 // contentful
 import { getClient } from '../utils/contentfulClient';
