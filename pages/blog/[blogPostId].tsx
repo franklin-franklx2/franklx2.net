@@ -1,18 +1,16 @@
-import type { NextPage } from 'next';
-import HTMLHead from '../components/head';
-import Header from '../components/header';
-import Menu from '../components/menu';
-import Body from '../components/blog/body';
-import Footer from '../components/footer';
-import React, { Suspense, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { NextPage } from 'next';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import HTMLHead from '../../components/head';
+import Header from '../../components/header';
+import Menu from '../../components/menu';
+import Body from '../../components/blog/blogDetails/body';
+import Footer from '../../components/footer';
 import { get } from 'lodash';
 
-// jotai
-import { useAtom } from 'jotai';
-import { blogPostsAtom } from '../atoms/store';
-
 // contentful
-import { getClient } from '../utils/contentfulClient';
+import { getClient } from '../../utils/contentfulClient';
 
 const CONTENT_TYPE = 'blogPost';
 
@@ -40,8 +38,28 @@ const getcontent = (content: any) => {
   return ret;
 };
 
-const Blog: NextPage = () => {
-  const [, setJotaiBlogPosts] = useAtom(blogPostsAtom);
+const BlogDetails: NextPage = () => {
+  const router = useRouter();
+  const { blogPostId } = router.query;
+  const [currentBlogPost, setCurrentBlogPost] = useState({});
+  const [foundBlogPost, setFoundBlogPost] = useState(false);
+  const getBlogPost = (
+    blogPostId: string | string[] | undefined,
+    blogPosts: any[]
+  ) => {
+    console.log('[blogPostId], getBlogPost, blogPostId: ', blogPostId);
+    console.log('[blogPostId], getBlogPost, blogPosts: ', blogPosts);
+    console.log('[blogPostId], getBlogPost, router.query: ', router.query);
+    let ret: any = undefined;
+    blogPosts.forEach((blogPost) => {
+      if (blogPost.id === blogPostId) {
+        ret = blogPost;
+        setFoundBlogPost(true);
+      }
+    });
+
+    return ret;
+  };
 
   const getBlogPosts = (content: any) => {
     const ret: any[] = [];
@@ -75,25 +93,35 @@ const Blog: NextPage = () => {
     const formattedBlogPosts: { [key: string]: any }[] =
       getBlogPosts(blogPosts);
     console.log('formattedBlogPosts: ', formattedBlogPosts);
-    setJotaiBlogPosts(formattedBlogPosts);
+    return formattedBlogPosts;
   };
 
   useEffect(() => {
     (async () => {
-      await getContent();
-      console.log('DONE WITH GET CONTENT');
+      const blogPosts = await getContent();
+      const currentBlogPost = getBlogPost(blogPostId, blogPosts);
+      console.log(
+        '[blogPostId], useEffect, currentBlogPost: ',
+        currentBlogPost
+      );
+      console.log('[blogPostId], useEffect, foundBlogPost: ', foundBlogPost);
+      setCurrentBlogPost(currentBlogPost);
     })();
-  }, []);
+  }, [blogPostId]);
 
   return (
     <React.Fragment>
       <HTMLHead />
       <Header pageTitle={'Blog'} />
       <Menu />
-      <Body />
+      <Body
+        blogPostId={blogPostId}
+        currentBlogPost={currentBlogPost}
+        foundBlogPost={foundBlogPost}
+      />
       <Footer />
     </React.Fragment>
   );
 };
 
-export default Blog;
+export default BlogDetails;

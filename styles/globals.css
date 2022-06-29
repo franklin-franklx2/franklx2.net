@@ -45,6 +45,10 @@
   height: 100%;
 }
 
+.menu-content-wrapper:hover {
+  background-color: #dbbf9e;
+}
+
 .menu-content-wrapper a {
   font-family: 'Glegoo', serif;
   font-size: 2em;
@@ -108,6 +112,10 @@ body {
 .blog-post-wrapper {
   outline: dashed 2px;
   padding: 0px 10px 20px 10px;
+}
+
+.blog-post-wrapper:hover {
+  background-color: #ffffff4f;
 }
 
 .blog-post-wrapper:not(:last-child) {
