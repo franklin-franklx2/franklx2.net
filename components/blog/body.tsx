@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 // jotai
 import { useAtom } from 'jotai';
 import { Suspense } from 'react';
-import { blogPostsAtom } from '../../atoms/store';
+import { blogPostsAtom, blogPostsAtom2 } from '../../atoms/store';
 
 const Tags: any = (props: { tags: any }) => {
   const tags = props.tags;
@@ -48,11 +48,7 @@ const Body: any = () => {
                   item
                   xs={4}
                   className="blog-post-tags"
-                >
-                  {/* <Suspense> */}
-                  <Tags tags={blogPost.tags} />
-                  {/* </Suspense> */}
-                </Grid>
+                ></Grid>
               </Grid>
             );
           })}

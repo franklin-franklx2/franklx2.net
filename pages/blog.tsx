@@ -55,7 +55,7 @@ const Blog: NextPage = () => {
         body: {
           content: content
         },
-        tags: contentItem.fields.tags
+        tags: contentItem.metadata.tags
       });
     });
 
@@ -68,6 +68,7 @@ const Blog: NextPage = () => {
       content_type: CONTENT_TYPE,
       include: 5 // The number of nested CMS entries to include
     });
+    console.log('blog.tsx, getContent, data: ', data);
     const blogPosts = get(data, 'items');
     // const formattedBlogPosts: { [key: string]: string }[] =
     const formattedBlogPosts: { [key: string]: any }[] =
