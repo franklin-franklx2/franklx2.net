@@ -3,18 +3,21 @@ import { useEffect, useState } from 'react';
 // jotai
 import { useAtom, atom } from 'jotai';
 import { currentBlogPostAtom } from '../../../atoms/store';
-
-const getBlogPost = (blogPostId: string, blogPosts: any[]) => {
-  let ret: any = undefined;
-  blogPosts.forEach((blogPost) => {
-    if (blogPost.id === blogPostId) {
-      ret = blogPost;
-    }
-  });
-
-  return ret;
+import { isNil, get } from 'lodash';
+const ContentItems = ({
+  jotaiCurrentBlogPost
+}: {
+  jotaiCurrentBlogPost: any;
+}) => {
+  const contentItems = get(jotaiCurrentBlogPost, 'body.content', [{}]);
+  return (
+    <>
+      {contentItems.map((contentItem: any) => {
+        return <span key={Math.random()}>{contentItem.value}</span>;
+      })}
+    </>
+  );
 };
-
 const Body: any = ({
   currentBlogPost,
   foundBlogPost
@@ -22,28 +25,10 @@ const Body: any = ({
   currentBlogPost: string;
   foundBlogPost: string;
 }) => {
-  //   const [blogPosts] = useAtom(blogPostsAtom);
-  //   const [currentBlogPost, setCurrentBlogPost] = useState(undefined);
-
-  //   useEffect(() => {
-  //     setCurrentBlogPost(getBlogPost(props.blogPostId, blogPosts));
-  //   }, [blogPosts]);
-
-  //   const currentBlogPostAtom = atom(blogPost);
   const [jotaiCurrentBlogPost] = useAtom(currentBlogPostAtom);
 
-  //   console.log('blogDetails, currentBlogPostAtom: ', currentBlogPost);
-  //   console.log('blogDetails, blogPosts: ', blogPosts);
   console.log('blogDetails, currentBlogPost: ', currentBlogPost);
   console.log('blogDetails, jotaiCurrentBlogPost: ', jotaiCurrentBlogPost);
-  //   console.log(
-  //     'blogDetails, body, props.currentBlogPost: ',
-  //     props.currentBlogPost
-  //   );
-  //   const [currentBlogPost, setCurrentBlogPost] = useState(undefined);
-  //   useEffect(() => {
-  //     setCurrentBlogPost(props.currentBlogPost);
-  //   }, []);
 
   return (
     <Grid container>
@@ -57,14 +42,22 @@ const Body: any = ({
             <span>{jotaiCurrentBlogPost ? jotaiCurrentBlogPost.date : ''}</span>
           </div>
           <div className="blog-post-body">
-            {(() => {
-              if (jotaiCurrentBlogPost) {
-                const contentItems = jotaiCurrentBlogPost.body.content;
-                contentItems.map(() => {
-                  return <div>hello world</div>;
-                });
+            <ContentItems jotaiCurrentBlogPost={jotaiCurrentBlogPost} />
+            {/* {!isNil(jotaiCurrentBlogPost) ? (
+              <ContentItems jotaiCurrentBlogPost={jotaiCurrentBlogPost} />
+            ) : (
+              ''
+            )} */}
+            {/* {(() => {
+              if (!isNil(jotaiCurrentBlogPost)) {
+                console.log(
+                  'blogDetails, body, return, jotaiCurrentBlogPost: ',
+                  jotaiCurrentBlogPost
+                  const contentItems = jotaiCurrentBlogPost.body.content;
+                  return <ContentItems contentItems={contentItems} />
+                );
               }
-            })()}
+            })()} */}
           </div>
         </div>
       </Grid>

@@ -132,3 +132,7 @@ body {
   background-color: yellow;
   outline: 1px black solid;
 }
+
+.blog-post-body {
+  margin-top: 1em;
+}
