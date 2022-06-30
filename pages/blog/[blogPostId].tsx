@@ -38,26 +38,44 @@ const BlogDetails: NextPage = () => {
 
     return ret;
   };
+
   const getcontent = (content: any) => {
     let ret: any[] = [];
 
     console.log('blog.tsx, getcontent, content: ', content);
-    content.forEach((contentItemOuterArray: { content: any[] }) => {
-      console.log(
-        'blog.tsx. getcontent, contentItemOuterArray: ',
-        contentItemOuterArray
-      );
-      contentItemOuterArray.content.forEach((contentItemInnerItem) => {
+    content.forEach(
+      (contentItemOuterArray: {
+        content: any[];
+        data: { target: { fields: { title: any; file: { url: any } } } };
+      }) => {
         console.log(
-          'blog.tsx. getcontent, contentItemInnerArray: ',
-          contentItemInnerItem
+          'blog.tsx. getcontent, contentItemOuterArray: ',
+          contentItemOuterArray
         );
-        ret.push({
-          nodeType: contentItemInnerItem.nodeType,
-          value: contentItemInnerItem.value
-        });
-      });
-    });
+
+        // if it is an image, the content array is empty, requires different processing
+        if (contentItemOuterArray.content.length == 0) {
+          const imageTitle = contentItemOuterArray.data.target.fields.title;
+          const imageUrl = contentItemOuterArray.data.target.fields.file.url;
+          ret.push({
+            nodeType: 'image',
+            imageTitle: imageTitle,
+            imageUrl: imageUrl
+          });
+        } else {
+          contentItemOuterArray.content.forEach((contentItemInnerItem) => {
+            console.log(
+              'blog.tsx. getcontent, contentItemInnerArray: ',
+              contentItemInnerItem
+            );
+            ret.push({
+              nodeType: contentItemInnerItem.nodeType,
+              value: contentItemInnerItem.value
+            });
+          });
+        }
+      }
+    );
 
     return ret;
   };

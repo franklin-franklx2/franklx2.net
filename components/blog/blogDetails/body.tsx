@@ -1,19 +1,78 @@
 import { Grid } from '@mui/material';
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 // jotai
 import { useAtom, atom } from 'jotai';
 import { currentBlogPostAtom } from '../../../atoms/store';
 import { isNil, get } from 'lodash';
+
+/**
+ *
+ * @todo
+ * NEED TO REFACTOR BLOG DETAILS BODY AND BLOG.TSX SO THEY SHARE THE SAME CODE
+ */
+
+const NotFound = () => {
+  return (
+    <>
+      <h3>404 Not Found</h3>
+    </>
+  );
+};
+
+const ParagraphContent = ({ value }: { value: string }) => {
+  return <p>{value}</p>;
+};
+
+const ImageContent = ({ url }: { url: string }) => {
+  console.log('imageContent, url: ', url);
+  return (
+    <div className="blog-post-image-content-wrapper">
+      {/* <Image src={`${url}`} alt="" layout="fill" /> */}
+      <Image
+        src={`${url}`}
+        alt=""
+        layout="responsive"
+        width="50px"
+        height="50px"
+      />
+    </div>
+  );
+};
+
 const ContentItems = ({
   jotaiCurrentBlogPost
 }: {
   jotaiCurrentBlogPost: any;
 }) => {
   const contentItems = get(jotaiCurrentBlogPost, 'body.content', [{}]);
+  console.log('blogDetails, jotaiCurrentBlogPost: ', jotaiCurrentBlogPost);
   return (
     <>
       {contentItems.map((contentItem: any) => {
-        return <span key={Math.random()}>{contentItem.value}</span>;
+        // return <p key={Math.random()}>{contentItem.value}</p>;
+        console.log(
+          'blogDetails, return, contentItem.nodeType: ',
+          contentItem.nodeType
+        );
+
+        if (contentItem.nodeType !== 'image') {
+          return (
+            <ParagraphContent key={Math.random()} value={contentItem.value} />
+          );
+        } else {
+          console.log(
+            'blogDetails, return, contentItem.imageUrl: ',
+            contentItem.imageUrl
+          );
+          return (
+            <ImageContent
+              key={Math.random()}
+              //   imageUrl={`https:${contentItem.imageUrl}`}
+              url={`https:${contentItem.imageUrl}`}
+            />
+          );
+        }
       })}
     </>
   );
@@ -42,22 +101,11 @@ const Body: any = ({
             <span>{jotaiCurrentBlogPost ? jotaiCurrentBlogPost.date : ''}</span>
           </div>
           <div className="blog-post-body">
-            <ContentItems jotaiCurrentBlogPost={jotaiCurrentBlogPost} />
-            {/* {!isNil(jotaiCurrentBlogPost) ? (
+            {foundBlogPost ? (
               <ContentItems jotaiCurrentBlogPost={jotaiCurrentBlogPost} />
             ) : (
-              ''
-            )} */}
-            {/* {(() => {
-              if (!isNil(jotaiCurrentBlogPost)) {
-                console.log(
-                  'blogDetails, body, return, jotaiCurrentBlogPost: ',
-                  jotaiCurrentBlogPost
-                  const contentItems = jotaiCurrentBlogPost.body.content;
-                  return <ContentItems contentItems={contentItems} />
-                );
-              }
-            })()} */}
+              <NotFound />
+            )}
           </div>
         </div>
       </Grid>
