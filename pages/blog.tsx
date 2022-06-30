@@ -61,6 +61,8 @@ const Blog: NextPage = () => {
   const [, setJotaiBlogPosts] = useAtom(blogPostsAtom);
 
   const getBlogPosts = (content: any) => {
+    console.log('blog.tsx, getBlogPosts, content: ', content);
+
     const ret: any[] = [];
     content.forEach((contentItem: any) => {
       console.log('blog, contentItem: ', contentItem);
@@ -72,8 +74,8 @@ const Blog: NextPage = () => {
         date: contentItem.fields.date,
         body: {
           content: content
-        },
-        tag: contentItem.metadata.tags[0].sys.id
+        }
+        // tag: contentItem.metadata.tags[0].sys.id
       });
     });
 

@@ -91,8 +91,8 @@ const BlogDetails: NextPage = () => {
         date: contentItem.fields.date,
         body: {
           content: content
-        },
-        tag: contentItem.metadata.tags[0].sys.id
+        }
+        // tag: contentItem.metadata.tags[0].sys.id
       });
     });
 
