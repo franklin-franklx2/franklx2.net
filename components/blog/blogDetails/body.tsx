@@ -28,17 +28,32 @@ const ImageContent = ({ url, title }: { url: string; title: string }) => {
   console.log('imageContent, url: ', url);
   console.log('imageContent, title: ', title);
   return (
-    <div className="blog-post-image-content-wrapper">
+    <>
       {/* <Image src={`${url}`} alt="" layout="fill" /> */}
-      <Image
-        src={`${url}`}
-        alt=""
-        layout="responsive"
-        width="50px"
-        height="50px"
-      />
-      <span>{title}</span>
-    </div>
+      <Grid container className="blog-post-image-content-wrapper">
+        <Grid item xs={12}>
+          <Image
+            className="blog-post-image-content"
+            src={`${url}`}
+            alt=""
+            // layout="responsive"
+            // width="50%"
+            // height="50%"
+            layout="fill"
+            objectFit="contain"
+          />
+        </Grid>
+      </Grid>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        className="blog-post-image-caption"
+      >
+        <span>{title}</span>
+      </Grid>
+    </>
   );
 };
 

@@ -163,7 +163,14 @@ body {
 
 .blog-post-image-content-wrapper {
   width: auto;
-  margin: 20px auto;
+  margin: 20px auto 0px;
   text-align: center;
+  font-weight: bold;
+  position: relative;
+  height: 400px;
+}
+
+.blog-post-image-caption {
+  margin: 10px auto 20px;
   font-weight: bold;
 }
