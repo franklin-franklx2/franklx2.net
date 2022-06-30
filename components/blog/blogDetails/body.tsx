@@ -24,8 +24,9 @@ const ParagraphContent = ({ value }: { value: string }) => {
   return <p>{value}</p>;
 };
 
-const ImageContent = ({ url }: { url: string }) => {
+const ImageContent = ({ url, title }: { url: string; title: string }) => {
   console.log('imageContent, url: ', url);
+  console.log('imageContent, title: ', title);
   return (
     <div className="blog-post-image-content-wrapper">
       {/* <Image src={`${url}`} alt="" layout="fill" /> */}
@@ -36,6 +37,7 @@ const ImageContent = ({ url }: { url: string }) => {
         width="50px"
         height="50px"
       />
+      <span>{title}</span>
     </div>
   );
 };
@@ -68,8 +70,8 @@ const ContentItems = ({
           return (
             <ImageContent
               key={Math.random()}
-              //   imageUrl={`https:${contentItem.imageUrl}`}
               url={`https:${contentItem.imageUrl}`}
+              title={contentItem.imageTitle}
             />
           );
         }

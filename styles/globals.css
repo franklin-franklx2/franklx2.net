@@ -152,7 +152,18 @@ body {
   margin-top: 20px;
 }
 
+.blog-post-read-more a {
+  color: black;
+  text-decoration: none;
+}
+
+.blog-post-read-more a:hover {
+  text-decoration: underline;
+}
+
 .blog-post-image-content-wrapper {
   width: 50%;
   margin: 20px auto;
+  text-align: center;
+  font-weight: bold;
 }
