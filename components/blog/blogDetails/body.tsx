@@ -36,9 +36,6 @@ const ImageContent = ({ url, title }: { url: string; title: string }) => {
             className="blog-post-image-content"
             src={`${url}`}
             alt=""
-            // layout="responsive"
-            // width="50%"
-            // height="50%"
             layout="fill"
             objectFit="contain"
           />

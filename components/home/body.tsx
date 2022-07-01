@@ -6,8 +6,7 @@ import { homeBodyAtom } from '../../atoms/store';
 const Body: any = () => {
   const [jotaiHomeBody] = useAtom(homeBodyAtom);
   return (
-    <Grid container>
-      <Grid item xs={2} p={1} />
+    <Grid container direction="row" justifyContent="center" alignItems="center">
       <Grid item xs={8} p={1}>
         <div className="body-content-wrapper">
           {jotaiHomeBody.map((paragraph: string) => {
@@ -15,7 +14,6 @@ const Body: any = () => {
           })}
         </div>
       </Grid>
-      <Grid item xs={2} p={1} />
     </Grid>
   );
 };
