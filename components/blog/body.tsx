@@ -37,16 +37,14 @@ const Body: any = () => {
   const [blogPosts] = useAtom(blogPostsAtom);
   console.log('blog, body, blogPosts: ', blogPosts);
   return (
-    <Grid container>
-      <Grid item xs={2} p={1} />
-      <Grid item xs={8} p={1}>
+    <Grid container direction="row" justifyContent="center" alignItems="center">
+      <Grid item xs={12} md={8} p={1}>
         <div className="body-content-wrapper">
           {blogPosts.map((blogPost) => {
             return <BlogPostSummary key={Math.random()} blogPost={blogPost} />;
           })}
         </div>
       </Grid>
-      <Grid item xs={2} p={1} />
     </Grid>
   );
 };
